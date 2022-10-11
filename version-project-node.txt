@@ -38,6 +38,7 @@ commands:
                 typescript                      4.6.4
 
 <----- Libraries ------>
+* npm install -g firebase-tools
 * npm install @angular/cdk
 * npm install @angular/localize
 * npm install @angular/material
