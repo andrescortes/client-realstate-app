@@ -52,5 +52,9 @@ commands:
 * npm install rxfire
 * npm install @angular/flex-layout
 
+----- Material-colours--------
+- https://material.io/resources/color/
+- https://fonts.google.com/specimen/Roboto?query=Roboto
+
 
 
