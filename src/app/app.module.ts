@@ -1,19 +1,21 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {AngularFireModule} from '@angular/fire/compat';//core integration firebase
-import {AngularFireStorageModule} from "@angular/fire/compat/storage";
-import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
-import {AngularFireAuthModule} from "@angular/fire/compat/auth";
+import {AngularFireStorageModule} from '@angular/fire/compat/storage';
+import {AngularFirestoreModule} from '@angular/fire/compat/firestore';
+import {AngularFireAuthModule} from '@angular/fire/compat/auth';
 
-import {provideFirebaseApp, initializeApp} from "@angular/fire/app";
-import {getFirestore, provideFirestore} from "@angular/fire/firestore";
-import {getAuth, provideAuth} from "@angular/fire/auth";
-import {getStorage, provideStorage} from "@angular/fire/storage";
+import {provideFirebaseApp, initializeApp} from '@angular/fire/app';
+import {getFirestore, provideFirestore} from '@angular/fire/firestore';
+import {getAuth, provideAuth} from '@angular/fire/auth';
+import {getStorage, provideStorage} from '@angular/fire/storage';
 
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {environment} from "../environments/environment";
+import {environment} from '../environments/environment';
+import {IndicatorsModule} from './shared/indicators';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -24,13 +26,16 @@ import {environment} from "../environments/environment";
     AppRoutingModule,
     //init services firebase
     provideFirebaseApp(() => initializeApp(environment.firebase.config)),
-    provideFirestore(()=> getFirestore()),
-    provideStorage(()=> getStorage()),
-    provideAuth(()=> getAuth()),
+    provideFirestore(() => getFirestore()),
+    provideStorage(() => getStorage()),
+    provideAuth(() => getAuth()),
     AngularFireModule.initializeApp(environment.firebase.config),
     AngularFireStorageModule,
     AngularFirestoreModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+
+    IndicatorsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

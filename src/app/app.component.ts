@@ -8,6 +8,7 @@ import {AngularFirestore} from "@angular/fire/compat/firestore";
 })
 export class AppComponent implements OnInit {
   title = 'client-realstate-app';
+  showSpinner: boolean = false;
 
   constructor(private fs: AngularFirestore) {
   }
@@ -18,6 +19,10 @@ export class AppComponent implements OnInit {
         console.log(persons.map(x => x.payload.doc.data()))
       }
     })
+  }
+
+  onToggleSpinner(): void {
+    this.showSpinner = !this.showSpinner;
   }
 
 
