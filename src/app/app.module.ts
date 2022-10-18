@@ -16,6 +16,7 @@ import {AppComponent} from './app.component';
 import {environment} from '../environments/environment';
 import {IndicatorsModule} from './shared/indicators';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {PopupsModule} from "./shared/popups";
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     AngularFireAuthModule,
 
     IndicatorsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    PopupsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
