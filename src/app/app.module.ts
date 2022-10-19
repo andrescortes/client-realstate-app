@@ -14,9 +14,13 @@ import {getStorage, provideStorage} from '@angular/fire/storage';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {environment} from '../environments/environment';
-import {IndicatorsModule} from './shared/indicators';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
+import {IndicatorsModule} from './shared/indicators';
 import {PopupsModule} from "./shared/popups";
+import {NotificationModule} from './services';
+
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
@@ -35,9 +39,12 @@ import {PopupsModule} from "./shared/popups";
     AngularFirestoreModule,
     AngularFireAuthModule,
 
-    IndicatorsModule,
     BrowserAnimationsModule,
-    PopupsModule
+    IndicatorsModule,
+    PopupsModule,
+    NotificationModule.forRoot(),
+
+    MatSidenavModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
