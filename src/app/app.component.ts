@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {AngularFirestore} from "@angular/fire/compat/firestore";
+import {AngularFirestore} from '@angular/fire/compat/firestore';
+import {NotificationService} from './services';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,8 @@ export class AppComponent implements OnInit {
   title = 'client-realstate-app';
   showSpinner: boolean = false;
 
-  constructor(private fs: AngularFirestore) {
+  constructor(private fs: AngularFirestore,
+              private notification: NotificationService) {
   }
 
   ngOnInit(): void {
@@ -26,4 +28,14 @@ export class AppComponent implements OnInit {
   }
 
 
+  onFilesChanged(urls: string | string[]): void {
+    console.log('urls', urls);
+  }
+
+  onSuccess():void{
+    this.notification.success("Success process!");
+  }
+  onError():void{
+    this.notification.error("Error during process execution!");
+  }
 }
