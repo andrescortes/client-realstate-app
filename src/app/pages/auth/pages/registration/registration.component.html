@@ -1,1 +1,55 @@
-<p>registration works!</p>
+<section fxLayoutAlign="center">
+  <mat-card>
+    <form
+      fxLayout="column"
+      fxLayoutAlign="center center"
+      fxLayoutGap="10px"
+      #f="ngForm"
+      (ngSubmit)="registerUser(f)"
+    >
+      <mat-form-field>
+        <mat-label>Enter Name</mat-label>
+        <input type="text" matInput placeholder="Name" name="name" ngModel required>
+        <mat-error>Please enter a Name</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Enter Lastname</mat-label>
+        <input type="text" matInput placeholder="Lastname" name="lastname" ngModel required>
+        <mat-error>Please enter a Lastname</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Enter Username</mat-label>
+        <input type="text" matInput placeholder="Username" name="username" ngModel required>
+        <mat-error>Please enter a Username</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Enter Phone</mat-label>
+        <input type="text" matInput placeholder="Phone" name="phone" ngModel required>
+        <mat-error>Please enter a Phone</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Enter E-mail</mat-label>
+        <input type="email" matInput placeholder="E-Mail" name="email" ngModel required>
+        <mat-error>Please enter a E-mail</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Enter Password</mat-label>
+        <input type="password" matInput placeholder="Password" name="password" ngModel required minlength="7">
+        <mat-error>Password have to have minimum 7 characters</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Confirm Password</mat-label>
+        <input type="password" matInput placeholder="Confirm Password" name="passwordConfirm" ngModel required minlength="7">
+        <mat-error>Password have to have minimum 7 characters</mat-error>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit">Send</button>
+    </form>
+  </mat-card>
+</section>
