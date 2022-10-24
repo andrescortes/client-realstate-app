@@ -1,17 +1,17 @@
 <mat-nav-list class="list">
-  <a (click)="closeMenu()" mat-list-item>
+  <a (click)="closeMenu()" mat-list-item routerLink="/">
     <mat-icon>home</mat-icon>
     <span class="navigation-list-label">Home</span>
   </a>
-  <a (click)="closeMenu()" mat-list-item>
+  <a (click)="closeMenu()" mat-list-item routerLink="auth/login">
     <mat-icon>login</mat-icon>
     <span class="navigation-list-label">Login</span>
   </a>
-  <a (click)="closeMenu()" mat-list-item>
+  <a (click)="closeMenu()" mat-list-item routerLink="auth/register">
     <mat-icon>how_to_register</mat-icon>
     <span class="navigation-list-label">Register</span>
   </a>
-  <a (click)="closeMenu()" mat-list-item>
+  <a (click)="closeMenu()" mat-list-item routerLink="auth/register">
     <mat-icon>contact_support</mat-icon>
     <span class="navigation-list-label">Contact Us</span>
   </a>
