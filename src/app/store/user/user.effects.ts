@@ -24,7 +24,7 @@ export class UserEffects {
       ofType(fromActions.Types.SIGN_UP_EMAIL),
       map((action: fromActions.SignUpEmail) => action.user),
       switchMap(userData =>
-        this.httpClient.post<UserResponse>(`${environment.url}account/register/`, userData)
+        this.httpClient.post<UserResponse>(`${environment.url}api/authentication/sign-up`, userData)
         .pipe(
           tap((response: UserResponse) => {//tap is success if new user is created
             localStorage.setItem('token', response.token);
@@ -46,7 +46,7 @@ export class UserEffects {
       ofType(fromActions.Types.SIGN_IN_EMAIL),//define which is operation to use
       map((action: fromActions.SignInEmail) => action.credentials),//get params to do the operation
       switchMap(userData =>//represents to communication with the server, and process with data returned
-        this.httpClient.post<UserResponse>(`${environment.url}account/login-app/`, userData)
+        this.httpClient.post<UserResponse>(`${environment.url}api/authentication/sign-in`, userData)
         .pipe(
           tap((response: UserResponse) => {//tap is success if response return is ok
             localStorage.setItem('token', response.token);
@@ -70,7 +70,7 @@ export class UserEffects {
       switchMap(async () => localStorage.getItem('token')),
       switchMap(token => {//represents to communication with the server, and process with data returned
           if (token) {
-            return this.httpClient.get<UserResponse>(`${environment.url}account/session/`)
+            return this.httpClient.get<UserResponse>(`${environment.url}api/user`)
             .pipe(
               tap((response: UserResponse) => {//tap is success if response return is ok
                 console.log('data of user on session from server', response)
