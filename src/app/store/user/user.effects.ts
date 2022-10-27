@@ -4,9 +4,10 @@ import {HttpClient} from '@angular/common/http';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {NotificationService} from '../../services';
 import {Router} from '@angular/router';
-import {catchError, map, Observable, of, switchMap, tap} from 'rxjs';
+import {Observable, of} from 'rxjs';
+import {catchError, map, switchMap, tap} from 'rxjs/operators';
 import {UserResponse} from "./user.models";
-import {environment} from "../../../environments/environment";
+import {environment} from '../../../environments/environment';
 
 type Action = fromActions.All;
 
@@ -38,5 +39,53 @@ export class UserEffects {
         )
       )
     )
-  )
+  );
+
+  signInEmail: Observable<Action> = createEffect(() =>
+    this.actions.pipe(
+      ofType(fromActions.Types.SIGN_IN_EMAIL),//define which is operation to use
+      map((action: fromActions.SignInEmail) => action.credentials),//get params to do the operation
+      switchMap(userData =>//represents to communication with the server, and process with data returned
+        this.httpClient.post<UserResponse>(`${environment.url}account/login-app/`, userData)
+        .pipe(
+          tap((response: UserResponse) => {//tap is success if response return is ok
+            localStorage.setItem('token', response.token);
+            this.router.navigate(['/']);
+          }),
+          // function map creates an Observable, like a wrapper to fromAction.SignUpEmailSuccess, remember that have to return an Observable type
+          map((response: UserResponse) => new fromActions.SignInEmailSuccess(response.email, response || null)),//success to create new user
+          catchError(err => {// catch error from server, creates an instance of object fromActions...
+            this.notification.error("Credentials are not valid.");
+            return of(new fromActions.SignInEmailError(err));//operator of, creates an Observable type Action
+          })
+        )
+      )
+    )
+  );
+
+
+  init: Observable<Action> = createEffect(() =>
+    this.actions.pipe(
+      ofType(fromActions.Types.INIT),//define which is operation to use
+      switchMap(async () => localStorage.getItem('token')),
+      switchMap(token => {//represents to communication with the server, and process with data returned
+          if (token) {
+            return this.httpClient.get<UserResponse>(`${environment.url}account/session/`)
+            .pipe(
+              tap((response: UserResponse) => {//tap is success if response return is ok
+                console.log('data of user on session from server', response)
+              }),
+              // function map creates an Observable, like a wrapper to fromAction.SignUpEmailSuccess, remember that have to return an Observable type
+              map((response: UserResponse) => new fromActions.InitAuthorized(response.email, response || null)),//success to create new user
+              catchError(err => {// catch error from server, creates an instance of object fromActions...
+                return of(new fromActions.InitError(err));//operator of, creates an Observable type Action
+              })
+            );
+          } else {
+            return of(new fromActions.InitUnauthorized())
+          }
+        }
+      )
+    )
+  );
 }
