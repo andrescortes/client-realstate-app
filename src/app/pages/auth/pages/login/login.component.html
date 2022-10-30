@@ -1,3 +1,4 @@
+<app-spinner *ngIf="loading$ | async"></app-spinner>
 <section fxLayoutAlign="center">
   <mat-card>
     <form
@@ -8,9 +9,9 @@
       (ngSubmit)="loginUser(f)"
     >
       <mat-form-field>
-        <mat-label>Enter E-mail</mat-label>
+        <mat-label>Enter E-mail or Username</mat-label>
         <input type="email" matInput placeholder="E-Mail" name="email" ngModel required>
-        <mat-error>Please enter a E-mail</mat-error>
+        <mat-error>Please enter a E-mail or Username</mat-error>
       </mat-form-field>
 
       <mat-form-field>
