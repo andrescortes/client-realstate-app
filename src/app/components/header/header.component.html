@@ -5,9 +5,11 @@
   <span>Building Shop</span>
   <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
     <ul fxLayoutAlign="row" fxLayoutGap="10px" class="navigation-menu">
-      <li><a routerLink="auth/register">Register</a></li>
-      <li><a routerLink="auth/login">Login</a></li>
-      <li><a routerLink="/">Home</a></li>
+      <li><a  routerLink="auth/register">{{user ? user.name + ' ' + user.lastname : null}}</a></li>
+      <li><a *ngIf="!isAuthorized" routerLink="auth/register">Register</a></li>
+      <li><a *ngIf="!isAuthorized" routerLink="auth/login">Login</a></li>
+      <li><a *ngIf="isAuthorized" routerLink="/">Home</a></li>
+      <li (click)="onSignOut()"><a *ngIf="isAuthorized" routerLink="/">SignOut</a></li>
     </ul>
   </div>
 </mat-toolbar>

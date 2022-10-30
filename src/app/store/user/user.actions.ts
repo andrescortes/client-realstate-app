@@ -78,7 +78,7 @@ export class SignInEmailError implements Action {
 export class SignUpEmail implements Action {
   readonly type = Types.SIGN_UP_EMAIL;
 
-  constructor(public user: UserCredential) {
+  constructor(public user: UserCreateRequest) {
   }
 }
 
