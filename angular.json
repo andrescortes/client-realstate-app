@@ -107,5 +107,8 @@
       }
     }
   },
-  "defaultProject": "client-realstate-app"
+  "defaultProject": "client-realstate-app",
+  "cli": {
+    "analytics": false
+  }
 }
