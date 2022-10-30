@@ -50,7 +50,7 @@ export class UserEffects {
         .pipe(
           tap((response: UserResponse) => {//tap is success if response return is ok
             localStorage.setItem('token', response.token);
-            this.router.navigate(['/']);
+            this.router.navigate(['/']).then(()=> this.notification.success("Login successfully."));
           }),
           // function map creates an Observable, like a wrapper to fromAction.SignUpEmailSuccess, remember that have to return an Observable type
           map((response: UserResponse) => new fromActions.SignInEmailSuccess(response.email, response || null)),//success to create new user
@@ -73,7 +73,7 @@ export class UserEffects {
             return this.httpClient.get<UserResponse>(`${environment.url}api/user`)
             .pipe(
               tap((response: UserResponse) => {//tap is success if response return is ok
-                console.log('data of user on session from server', response)
+                //console.log('data of user on session from server', response);
               }),
               // function map creates an Observable, like a wrapper to fromAction.SignUpEmailSuccess, remember that have to return an Observable type
               map((response: UserResponse) => new fromActions.InitAuthorized(response.email, response || null)),//success to create new user

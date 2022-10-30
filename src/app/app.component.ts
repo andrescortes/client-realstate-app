@@ -32,6 +32,7 @@ export class AppComponent implements OnInit {
         })*/
     this.user$ = this.store.pipe(select(fromUser.getUser)) as Observable<fromUser.UserResponse>;
     this.isAuthorized$ = this.store.pipe(select(fromUser.getIsAuthorized));
+    this.store.dispatch(new fromUser.Init());//keep on session
   }
 
   onToggleSpinner(): void {
