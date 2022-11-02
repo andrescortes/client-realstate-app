@@ -15,9 +15,13 @@
     <mat-icon>contact_support</mat-icon>
     <span class="navigation-list-label">Contact Us</span>
   </a>
-  <a *ngIf="isAuthorized" (click)="closeMenu()" mat-list-item>
+  <a *ngIf="isAuthorized" (click)="closeMenu()" mat-list-item routerLink="real-state/create">
     <mat-icon>add</mat-icon>
-    <span class="navigation-list-label">New product</span>
+    <span class="navigation-list-label">New Real State</span>
+  </a>
+  <a *ngIf="isAuthorized" (click)="closeMenu()" mat-list-item routerLink="real-state/list">
+    <mat-icon>add</mat-icon>
+    <span class="navigation-list-label">List of Real States</span>
   </a>
   <a *ngIf="isAuthorized" (click)="onSignOut()" (click)="closeMenu()" mat-list-item>
     <mat-icon>logout</mat-icon>
