@@ -1,7 +1,8 @@
 export interface RealState {
   id: number,
   name: string,
-  image: string,
+  address: string,
+  picture: string,
   price: number,
-  date: string
+  createDate: string
 }
