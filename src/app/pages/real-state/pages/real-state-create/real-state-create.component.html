@@ -1,39 +1,47 @@
 <app-spinner *ngIf="loading$ | async"></app-spinner>
+
 <mat-toolbar color="secondary">
   <span>Register new Real-State</span>
 </mat-toolbar>
+
 <section fxLayoutAlign="center">
   <mat-card>
-    <form fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px" #f="ngForm">
+    <form
+      #f="ngForm"
+      (ngSubmit)="registerRealState(f)"
+      fxLayout="column"
+      fxLayoutAlign="center center"
+      fxLayoutGap="10px"
+    >
       <div class="personal__photo">
         <div class="photo">
-          <app-entity-photo class="photo__img" [photoURL]="photoLoaded"></app-entity-photo>
-          <button mat-button appFilesUpload (changed)="onFilesChanged($event)">
+          <app-entity-photo [photoURL]="photoLoaded" class="photo__img"></app-entity-photo>
+          <button (changed)="onFilesChanged($event)" appFilesUpload mat-button>
             <mat-icon>upload</mat-icon>
             Upload Image
           </button>
         </div>
-
-        <mat-form-field>
-          <mat-label>Enter Name</mat-label>
-          <input type="text" ngModel name="name" required placeholder="Enter name" matInput>
-          <mat-error>Enter a name valid.</mat-error>
-        </mat-form-field>
-
-        <mat-form-field>
-          <mat-label>Enter Address</mat-label>
-          <input type="text" ngModel name="address" required placeholder="Enter Address" matInput>
-          <mat-error>Enter a address valid.</mat-error>
-        </mat-form-field>
-
-        <mat-form-field>
-          <mat-label>Enter Price</mat-label>
-          <input type="text" ngModel name="price" required placeholder="Enter Price" matInput>
-          <mat-error>Enter a price valid.</mat-error>
-        </mat-form-field>
-
-        <button type="submit" mat-raised-button color="primary" [disabled]="f.invalid">Save</button>
       </div>
+
+      <mat-form-field>
+        <mat-label>Enter Name</mat-label>
+        <input matInput name="name" ngModel placeholder="Enter name" required type="text">
+        <mat-error>Enter a name valid.</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Enter Address</mat-label>
+        <input matInput name="address" ngModel placeholder="Enter Address" required type="text">
+        <mat-error>Enter a address valid.</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Enter Price</mat-label>
+        <input matInput name="price" ngModel placeholder="Enter Price" required type="text">
+        <mat-error>Enter a price valid.</mat-error>
+      </mat-form-field>
+
+      <button [disabled]="f.invalid" color="primary" mat-raised-button type="submit">Save</button>
     </form>
   </mat-card>
 </section>
