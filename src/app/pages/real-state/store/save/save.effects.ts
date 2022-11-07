@@ -13,6 +13,17 @@ type Action = fromActions.All;
 
 @Injectable()
 export class SaveEffects {
+  read: Observable<Action> = createEffect(() =>
+    this.actions.pipe(
+      ofType(fromActions.Types.READ),//actives request
+      switchMap(() => this.httpClient.get<RealStateResponse[]>(`${environment.url}gateway/real-state`)
+      .pipe(
+        delay(1000),
+        map((realStates: RealStateResponse[]) => new fromActions.ReadSuccess(realStates)),
+        catchError((err) => of(new fromActions.ReadError(err.message))),
+      )),
+    ),
+  );
 
   create: Observable<Action> = createEffect(() =>
     this.actions.pipe(

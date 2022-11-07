@@ -10,7 +10,7 @@ const routes: Routes = [
   },
   {
     path: 'list',
-    loadChildren: () => import('./pages/real-state-list/real-state-list-routing.module').then(m => m.RealStateListRoutingModule),
+    loadChildren: () => import('./pages/real-state-list/real-state-list.module').then(m => m.RealStateListModule),
     canActivate: [AuthGuard]
   }
 ];

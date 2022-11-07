@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { RealStateListRoutingModule } from './real-state-list-routing.module';
 import { RealStateListComponent } from './real-state-list.component';
+import { SpinnerModule } from '../../../../shared/indicators';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { RealStateListComponent } from './real-state-list.component';
   ],
   imports: [
     CommonModule,
-    RealStateListRoutingModule
+    RealStateListRoutingModule,
+    SpinnerModule
   ]
 })
 export class RealStateListModule { }
