@@ -1,2 +1,26 @@
 <app-spinner *ngIf="loading$ | async"></app-spinner>
-<pre>{{realStates$ | async | json}}</pre>
+<section>
+  <div fxLayoutAlign="center">
+    <ul *ngIf="realStates$ | async as realStates" class="cards">
+      <li *ngFor="let realState of realStates" class="cards__item">
+        <mat-card class="example-card">
+          <mat-card-header>
+            <mat-card-title>{{realState?.name}}</mat-card-title>
+            <mat-card-subtitle>Price {{realState.price}}</mat-card-subtitle>
+          </mat-card-header>
+          <div class="img-size">
+            <img alt="{{realState.name}}" mat-card-image
+                 src="{{realState.picture ? realState.picture : pictureDefault}}">
+          </div>
+          <mat-card-content>
+            <p>{{realState.address}}</p>
+          </mat-card-content>
+          <mat-card-actions fxLayoutAlign="center">
+            <button mat-button color="primary">See</button>
+            <button mat-button color="primary">Buy</button>
+          </mat-card-actions>
+        </mat-card>
+      </li>
+    </ul>
+  </div>
+</section>
